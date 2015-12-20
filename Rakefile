@@ -1,7 +1,5 @@
 require 'rspec/core/rake_task'
-require 'neo4j-core'
-
-load 'neo4j/tasks/neo4j_server.rake'
+require 'neo4j/rake_tasks'
 
 RSpec::Core::RakeTask.new(:spec)
 
