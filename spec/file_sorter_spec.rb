@@ -4,7 +4,7 @@ describe FileSorter do
   describe "#split_file" do
     let (:file_sorter) { FileSorter.new('source.csv') }
 
-    it "splits a file" do
+    it "splits a large file into smaller files" do
       destination = 'chunks'
       file_sorter.mkdir(destination)
       file_sorter.split(destination, 10)
