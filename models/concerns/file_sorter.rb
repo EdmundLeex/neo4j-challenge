@@ -38,4 +38,21 @@ class FileSorter
     end
   end
 
+  def sort_file(file)
+    sorted_content = `sort #{file}`
+
+    if sorted_content == ""
+      sorted_content = File.readlines(file).sort
+    end
+
+    File.open(file, 'w') { |f| f.write sorted_content }
+  end
+
+  def sort_files(files, destination)
+    files_str = files.join(' ')
+    unless system("sort #{files_str} >> #{destination}/sorted.csv")
+      external_sort(files, destination)
+    end
+  end
+
 end
