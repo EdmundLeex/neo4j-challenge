@@ -43,18 +43,13 @@ class FileSorter
     end
   end
 
-  def sort_file(file)
-    sorted_content = `sort #{file}`
+  def sort_file(file_name)
+    sorted_content = sys_sort_one_file(file_name)
 
     if sorted_content == ""
-      sorted_content = File.readlines(file).sort
+      sorted_content = File.readlines(file_name).sort
     end
 
-    File.open(file, 'w') { |f| f.write sorted_content }
+    File.open(file_name, 'w') { |f| f.write sorted_content }
   end
-
-  def sys_count(file_name)
-    `wc -l #{file_name}`.split(' ')[0].to_i
-  end
-
 end
