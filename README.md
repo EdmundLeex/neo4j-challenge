@@ -16,3 +16,4 @@ Performance and parallelism should be considered as the test data will be millio
 -[ ] Duplicated relation
 -[ ] Parallelism
 -[ ] Non numeric characters
+-[ ] uuid might not be unique if some records were deleted
