@@ -1,24 +1,29 @@
+require_relative 'system_command'
+
 class FileSorter
-  def initialize
-    
+  include SystemCommand
+
+  attr_reader :file_name, :file
+
+  def initialize(file_name)
+    @file_name = file_name
+    @file = File.open(file_name)
+    @num_of_lines = sys_count(file_name) || @file.count
+  end
+
+  def sort_files(file_names, destination)
+    unless sys_sort(file_names, destination)
+      external_sort(files, destination)
+    end
+  end
+
+  def split(destination, line_limit = 2000)
+    unless sys_split(file_name, destination, line_limit)
+      split_file_alt(file_name, line_limit, destination)
+    end
   end
 
   private
-
-  def mkdir(dir)
-    system("mkdir #{dir}")
-    dir
-  end
-
-  def rm_dir(dir)
-    system("rm -rf #{dir}")
-  end
-
-  def split_file(file, destination, line_limit = 2000)
-    unless system("split -l #{line_limit} #{file} #{destination}/")
-      split_file_alt(file, line_limit, destination)
-    end
-  end
 
   # Use this if OS split command doesn't work
   def split_file_alt(file, line_limit, destination)
@@ -48,11 +53,8 @@ class FileSorter
     File.open(file, 'w') { |f| f.write sorted_content }
   end
 
-  def sort_files(files, destination)
-    files_str = files.join(' ')
-    unless system("sort #{files_str} >> #{destination}/sorted.csv")
-      external_sort(files, destination)
-    end
+  def sys_count(file_name)
+    `wc -l #{file_name}`.split(' ')[0].to_i
   end
 
 end
