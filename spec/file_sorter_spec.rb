@@ -1,4 +1,4 @@
-require 'byebug'
+require 'spec_helper'
 require_relative '../models/concerns/file_sorter'
 
 describe FileSorter do
@@ -11,7 +11,7 @@ describe FileSorter do
       file_sorter.split(destination, 10)
     end
 
-    after { file_sorter.rm_dir(destination) }
+    after { clean_up(destination) }
 
     it "splits a large file into smaller files" do
 
@@ -33,8 +33,10 @@ describe FileSorter do
       sorted_file = File.readlines("sorted.csv").map(&:chomp)
 
       expect(sorted_file).to eq target_sorted_file
+    end
 
-      system("rm sorted.csv")
+    it "sort a collection of files using external sort" do
+
     end
   end
 end
