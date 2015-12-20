@@ -1,4 +1,4 @@
-require_relative 'app'
+require_relative './environment/environment'
 
 Neo4j::Session.open(:server_db)
 Neo4j::Transaction.run do

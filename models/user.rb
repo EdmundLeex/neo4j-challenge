@@ -1,5 +1,3 @@
-require 'neo4j'
-
 class User
   include Neo4j::ActiveNode
 

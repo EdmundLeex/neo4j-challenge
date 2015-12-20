@@ -12,6 +12,9 @@ The input will sometimes contain non numeric characters, these should be excepti
 
 Performance and parallelism should be considered as the test data will be millions of rows.
 
+## Start Console
+Go to home directory and use `pry -r './config/environment'`
+
 ## Things to consider
 -[ ] Duplicated relation
 -[ ] Parallelism
