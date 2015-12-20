@@ -1,9 +1,4 @@
-require 'rubygems'
-require 'bundler'
-
-Bundler.require
-
-require_all 'models', 'controllers'
+require_relative 'app'
 
 Neo4j::Session.open(:server_db)
 Neo4j::Transaction.run do
