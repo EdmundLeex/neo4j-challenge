@@ -13,7 +13,7 @@ class FileSorter
 
   def sort_files(file_names, destination)
     unless sys_sort(file_names, destination)
-      external_sort(files, destination)
+      # external_sort(file_names, destination)
     end
   end
 
