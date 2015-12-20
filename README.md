@@ -11,3 +11,8 @@ The script should be able to handle problems and generate a list of exceptions w
 The input will sometimes contain non numeric characters, these should be exceptions and not be inserted.
 
 Performance and parallelism should be considered as the test data will be millions of rows.
+
+## Things to consider
+-[ ] Duplicated relation
+-[ ] Parallelism
+-[ ] Non numeric characters
