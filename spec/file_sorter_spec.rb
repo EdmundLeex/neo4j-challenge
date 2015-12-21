@@ -14,7 +14,6 @@ describe FileSorter do
     after { clean_up(destination) }
 
     it "splits a large file into smaller files" do
-
       num_of_files = `ls #{destination}`.count("\n")
       num_of_chunks = file_sorter.file.count.divmod(10)
       num_of_chunks = if num_of_chunks[1].zero?
@@ -28,7 +27,7 @@ describe FileSorter do
 
     it "sort a collection of files" do
       file_names = Dir["#{destination}/*"]
-      file_sorter.sort_files(file_names, "./")
+      file_sorter.sort_files(file_names, ".")
       target_sorted_file = File.readlines("source.csv").map(&:chomp).sort
       sorted_file = File.readlines("sorted.csv").map(&:chomp)
 
@@ -36,7 +35,12 @@ describe FileSorter do
     end
 
     it "sort a collection of files using external sort" do
+      file_names = Dir["#{destination}/*"]
+      file_sorter.send(:external_sort, file_names, ".", 100)
+      target_sorted_file = File.readlines("source.csv").map(&:chomp).sort
+      sorted_file = File.readlines("sorted.csv").map(&:chomp)
 
+      expect(sorted_file).to eq target_sorted_file
     end
   end
 end

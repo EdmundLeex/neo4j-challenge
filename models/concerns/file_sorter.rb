@@ -13,7 +13,7 @@ class FileSorter
 
   def sort_files(file_names, destination)
     unless sys_sort(file_names, destination)
-      # external_sort(file_names, destination)
+      external_sort(file_names, destination)
     end
   end
 
@@ -51,5 +51,64 @@ class FileSorter
     end
 
     File.open(file_name, 'w') { |f| f.write sorted_content }
+  end
+
+  def external_sort(file_names, destination, chunk_size)
+    files = file_names.map { |fn| PartialFile.new(fn, chunk_size) }
+    target_file = File.open("#{destination}/sorted.csv", "a")
+
+    until files.all?(&:eof?)
+      smallest = nil
+      idx = nil
+
+      files.each_with_index do |file, i|
+        if file.current_chunk.nil? || file.pointer == chunk_size
+          file.grab_next_chunk
+        end
+
+        line = file.current_chunk[file.pointer]
+        smallest ||= line
+
+        if smallest > line
+          smallest = line
+          idx = i
+        end
+      end
+
+      files[idx].next_line
+      target_file.write(smallest)
+    end
+  end
+
+  class PartialFile
+    include SystemCommand
+
+    attr_reader :pointer, :current_chunk
+
+    def initialize(file_name, chunk_size = 5000)
+      @enum          = File.open(file_name).each_line
+      @chunk_size    = chunk_size
+      @current_chunk = nil
+      @pointer       = 0
+      @eof           = false
+    end
+
+    def grab_next_chunk
+      @current_chunk = enum.take(chunk_size).tap do |chunk|
+        @eof = true if chunk.empty?
+        @pointer = 0
+      end
+    end
+
+    def next_line
+      @pointer += 1
+    end
+
+    def eof?
+      @eof
+    end
+
+    private
+    attr_reader :enum, :chunk_size, :file
   end
 end
