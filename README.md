@@ -33,7 +33,7 @@ Seed the database
 Go to home directory and use `pry -r './config/environment'`
 
 ## Things to consider
--[ ] Duplicated relation
--[ ] Parallelism
--[ ] Non numeric characters
--[ ] uuid might not be unique if some records were deleted
+- [ ] Duplicated relation
+- [ ] Parallelism
+- [ ] Non numeric characters
+- [ ] uuid might not be unique if some records were deleted
