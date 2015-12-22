@@ -37,3 +37,4 @@ Go to home directory and use `pry -r './config/environment'`
 - [ ] Parallelism
 - [ ] Non numeric characters
 - [ ] uuid might not be unique if some records were deleted
+- [ ] Use JRuby instead of MRI
