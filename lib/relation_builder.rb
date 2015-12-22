@@ -64,6 +64,7 @@ class Worker
     Neo4j::Session.open(:server_db)
 
     @rows.each do |row|
+      # n+1
       uid_a, uid_b = row.chomp.split(",")
       user_a = User.find(uid_a)
       user_b = User.find(uid_b)
