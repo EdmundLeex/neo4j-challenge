@@ -12,6 +12,23 @@ The input will sometimes contain non numeric characters, these should be excepti
 
 Performance and parallelism should be considered as the test data will be millions of rows.
 
+## Preliminary
+Follow these steps:
+
+Install neo4j
+
+`brew update`
+
+`brew install neo4j`
+
+Navigate to home directory and create database
+
+`rake neo4j:install[community-latest]`
+
+Seed the database
+
+`ruby seed.rb`
+
 ## Start Console
 Go to home directory and use `pry -r './config/environment'`
 
