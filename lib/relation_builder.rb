@@ -73,48 +73,6 @@ class Worker
   end
 end
 
-# def build_relation_from_file(file_name)
-#   tasks = Queue.new
-#   file_enum = File.open(file_name).each_line
-#   threads = []
-
-#   threads << Thread.new do
-#     task = []
-#     current = nil
-#     file_enum.each do |line|
-#       current ||= line.split(',')[0]
-#       if line.split(',')[0] == current
-#         task << line
-#       else
-#         tasks << task
-#         task = [line]
-#         current = line.split(',')[0]
-#       end
-#     end
-#   end
-
-#   threads << Thread.new do
-#   tasks.pop
-#   end
-
-
-#   thread = thread_pool.pop
-#   thread_in_use << thread
-
-#   tasks.
-# end
-
-def build_rel
-  sort_file('source.csv')
-  tb = TaskBuilder.new('sorted.csv')
-
-end
-
-  # sort_file_prc = self.method(:sort_file).to_proc
-  # workers = Array.new(num_workers) { Worker.new(sort_file_prc) }
-
-
-
 
 
 
