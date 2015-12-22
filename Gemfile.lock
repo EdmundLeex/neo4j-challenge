@@ -14,6 +14,24 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     builder (3.2.2)
+    byebug (8.2.1)
+    celluloid (0.17.2)
+      celluloid-essentials
+      celluloid-extras
+      celluloid-fsm
+      celluloid-pool
+      celluloid-supervision
+      timers (>= 4.1.1)
+    celluloid-essentials (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-extras (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-fsm (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-pool (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-supervision (0.20.5)
+      timers (>= 4.1.1)
     colored (1.2)
     diff-lcs (1.2.5)
     faker (1.6.1)
@@ -25,6 +43,7 @@ GEM
     faraday_middleware-multi_json (0.0.6)
       faraday_middleware
       multi_json
+    hitimes (1.2.3)
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -78,6 +97,8 @@ GEM
     rspec-support (3.4.1)
     rubyzip (1.1.7)
     thread_safe (0.3.5)
+    timers (4.1.1)
+      hitimes
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
 
@@ -85,6 +106,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug
+  celluloid
   faker
   neo4j
   rake
