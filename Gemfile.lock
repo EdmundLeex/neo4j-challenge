@@ -15,24 +15,9 @@ GEM
       tzinfo (~> 1.1)
     builder (3.2.2)
     byebug (8.2.1)
-    celluloid (0.17.2)
-      celluloid-essentials
-      celluloid-extras
-      celluloid-fsm
-      celluloid-pool
-      celluloid-supervision
-      timers (>= 4.1.1)
-    celluloid-essentials (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-extras (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-fsm (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-pool (0.20.5)
-      timers (>= 4.1.1)
-    celluloid-supervision (0.20.5)
-      timers (>= 4.1.1)
     colored (1.2)
+    concurrent-ruby (1.0.0)
+    connection_pool (2.2.0)
     diff-lcs (1.2.5)
     faker (1.6.1)
       i18n (~> 0.5)
@@ -43,7 +28,6 @@ GEM
     faraday_middleware-multi_json (0.0.6)
       faraday_middleware
       multi_json
-    hitimes (1.2.3)
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -81,6 +65,7 @@ GEM
     orm_adapter (0.5.0)
     os (0.9.6)
     rake (10.4.2)
+    redis (3.2.2)
     require_all (1.3.3)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
@@ -96,9 +81,12 @@ GEM
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
     rubyzip (1.1.7)
+    sidekiq (4.0.1)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      json (~> 1.0)
+      redis (~> 3.2, >= 3.2.1)
     thread_safe (0.3.5)
-    timers (4.1.1)
-      hitimes
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
 
@@ -107,12 +95,12 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  celluloid
   faker
   neo4j
   rake
   require_all
   rspec
+  sidekiq
 
 BUNDLED WITH
    1.10.6
