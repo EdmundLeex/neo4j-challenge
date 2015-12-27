@@ -23,8 +23,18 @@ File.open('source.csv', 'w') do |file|
   user_ids.each_with_index do |uid_a, i|
     user_ids.each_with_index do |uid_b, j|
       next if i == j
-      odd = rand(2)
-      content << "#{uid_a},#{uid_b}" if odd == 1
+      odd = rand(7)
+      if odd < 4
+        content << "#{uid_a},#{uid_b}"
+      elsif odd == 5
+        content << Faker::Bitcoin.address
+      elsif odd == 6
+        2.times { content << "#{uid_a},#{uid_b}" }
+      # else
+      #   uid_a.gsub!(/\d/, "9")
+      #   uid_b.gsub!(/\d/, "2")
+      #   content << "#{uid_a},#{uid_b}"
+      end
     end
   end
 
