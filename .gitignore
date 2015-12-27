@@ -4,5 +4,3 @@
 *.pid
 *.byebug_history
 db/
-*/db
-*/db/*
