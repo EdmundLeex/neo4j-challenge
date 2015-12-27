@@ -4,3 +4,4 @@
 *.pid
 *.byebug_history
 db/
+*.csv
