@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'bundler'
 
-require 'celluloid/current'
 Bundler.require
 
-require_all 'models', 'controllers', 'lib'
+require_all 'workers', 'models', 'controllers', 'lib'
