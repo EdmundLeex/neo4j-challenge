@@ -2,4 +2,4 @@
 
 *.log
 *.pid
-#.byebug_history
+*.byebug_history
