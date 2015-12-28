@@ -7,6 +7,7 @@ module Workers
     sidekiq_options retry: true
 
     def perform(file_name)
+      # error_log_file_name = "error.csv"
       file = File.open(file_name)
 
       batch = []

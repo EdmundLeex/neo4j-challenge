@@ -12,7 +12,7 @@ module Workers
         batch.each do |row|
           # check if matches neo4j uuid pattern
           unless is_valid_data?(row)
-            error_rows << "#{row.chomp}<=error_msg=>Invalid id"
+            error_rows << "#{row.chomp}<=error_msg=>InvalidId"
             next
           end
 
@@ -26,9 +26,11 @@ module Workers
             next
           end
 
-          # write_lock = Neo4j::Transaction.acquire_write_lock(user_a)
-
-          user_a.followers << user_b
+          if user_a.followers.where(uuid: user_b.uuid).empty?
+            user_a.followers << user_b
+          else
+            error_rows << "#{row.chomp}<=error_msg=>DuplicatedEntry"
+          end
         end
         LogErrorWorker.perform_async(error_log_file_name, error_rows)
         error_rows = []
